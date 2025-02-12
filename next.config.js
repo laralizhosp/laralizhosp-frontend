@@ -8,7 +8,7 @@ const nextConfig = {
   experimental: {
     forceSwcTransforms: true,
   },
-
+  pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
   trailingSlash: true,
 };
 

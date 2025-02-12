@@ -51,7 +51,7 @@ export function AuthProvider({ children }: any) {
               });
               return;
             }
-            if (response.data[0].password != password) {
+            if (response.data[0].password !== password) {
                 toast({
                     title: "Error",
                     description: "Senha inválida.",

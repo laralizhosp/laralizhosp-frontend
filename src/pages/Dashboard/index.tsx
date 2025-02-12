@@ -6,6 +6,7 @@ import {
   useRadioGroup,
   Box,
   FormControl,
+  Image
 } from "@chakra-ui/react";
 
 import { parseCookies } from "nookies";
@@ -15,13 +16,11 @@ import { api } from "../../services/api";
 import TitleContext from "../../components/TitleContext";
 import RadioCard from "../../components/RadioCard";
 
-import { buttons } from "./buttons";
 import Logo from "../../components/Logo";
 import DefaultButton from "../../components/DefaultButton";
 import HelperLabelComponent from "../../components/HelperLabelComponent";
 import TextAreaComponent from "../../components/TextAreaComponent";
 import InputComponent from "../../components/InputComponent";
-import * as Styled from "./styles";
 import toast, { Toaster } from "react-hot-toast";
 import { GetServerSideProps } from "next";
 
@@ -39,12 +38,12 @@ export default function Dashboard() {
   const configureAssessment = useCallback(() => {
     setSendMessage(true);
     setSatisfaction(false);
-  }, [sendMessage, satisfaction]);
+  }, []);
 
   const configureMessage = useCallback(() => {
     setRegister(true);
     setSendMessage(false);
-  }, [register, sendMessage]);
+  }, []);
 
   const configureRegister = (event: FormEvent) => {
     event.preventDefault();
@@ -76,7 +75,7 @@ export default function Dashboard() {
     setSendMessage(false);
     setRegister(false);
     setAppreciation(false);
-  }, [satisfaction, sendMessage, register, appreciation]);
+  }, []);
 
   const handleChange = (value: SetStateAction<string>) => {
     setAssessment(value);
@@ -87,8 +86,41 @@ export default function Dashboard() {
     onChange: handleChange,
   });
 
+  const buttons = [
+    {
+      id: "1",
+      name: "Insatisfeito",
+      src: "/assets/images/unsatisfied.svg",
+      alt: "Emoji de insatisfeito",
+    },
+    {
+      id: "2",
+      name: "Pouco Satisfeito",
+      src: "/assets/images/littleSatisfied.svg",
+      alt: "Emoji de pouco satisfeito",
+    },
+    {
+      id: "3",
+      name: "Neutro",
+      src: "/assets/images/neutral.svg",
+      alt: "Emoji de neutro",
+    },
+    {
+      id: "4",
+      name: "Satisfeito",
+      src: "/assets/images/satisfied.svg",
+      alt: "Emoji de satisfeito",
+    },
+    {
+      id: "5",
+      name: "Muito Satisfeito",
+      src: "/assets/images/verySatisfied.svg",
+      alt: "Emoji de muito satisfeito",
+    },
+  ];
+
   return (
-    <Styled.MainBg>
+    <Box width={"100%"} height={"100vh"} backgroundImage={"/assets/images/bgLaraliz.svg"} backgroundRepeat={"no-repeat"} backgroundSize={"cover"}>
       <Logo />
       <form onSubmit={configureRegister}>
         <Box display={"flex"} justifyContent={"center"}>
@@ -214,7 +246,8 @@ export default function Dashboard() {
                 }
                 descriptionContinuation={"um serviço ainda melhor."}
               />
-              <Styled.Image
+              <Image
+                width={["25.5rem", "25.5rem", "14.5rem", "14.5rem", "14.5rem"]}
                 src="/assets/images/highFive.svg"
                 alt="Imagem de duas pessoas batendo as mãos"
               />
@@ -264,7 +297,7 @@ export default function Dashboard() {
         )}
       </form>
       <Toaster position="top-center" reverseOrder={false} />
-    </Styled.MainBg>
+    </Box>
   );
 }
 
