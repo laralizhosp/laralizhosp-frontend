@@ -9,7 +9,7 @@ import Head from "next/head";
 
 export default function Login() {
   const toast = useToast();
-  const { signIn } = useContext(AuthContext);
+  const { signIn, isLoading } = useContext(AuthContext);
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -71,6 +71,7 @@ export default function Login() {
             type={"password"}
           />
           <DefaultButton
+            isDisabled={isLoading}
             type="submit"
             title="Entrar"
           />

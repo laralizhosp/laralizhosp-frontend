@@ -13,6 +13,7 @@ type SignInData = {
 type AuthContextType = {
     isAuthenticated: boolean;
     signIn: ({email, password}: SignInData) => Promise<void>
+    isLoading: boolean;
 }
 
 type User = {
@@ -27,6 +28,8 @@ export function AuthProvider({ children }: any) {
 
     const toast = useToast();
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const isAuthenticated = !!user;
 
     useEffect(() => {
@@ -40,6 +43,7 @@ export function AuthProvider({ children }: any) {
     }, []);
 
     async function signIn({email, password}: SignInData) {
+        setIsLoading(true);
         api.get(`/users?email=${email}`).then((response) => {
             if (!response.data) {
               toast({
@@ -66,12 +70,13 @@ export function AuthProvider({ children }: any) {
             })
             api.defaults.headers.common['Authorization'] = "Bearer " + response.data[0].token;
             setUser(response.data[0]);
+            setIsLoading(false);
             Router.push("/Dashboard");
         });
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, signIn }}>
+        <AuthContext.Provider value={{ isAuthenticated, signIn, isLoading }}>
            {children} 
         </AuthContext.Provider>
     )
