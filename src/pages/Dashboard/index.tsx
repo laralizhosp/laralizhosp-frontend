@@ -6,7 +6,7 @@ import {
   useRadioGroup,
   Box,
   FormControl,
-  Image
+  Image,
 } from "@chakra-ui/react";
 
 import { parseCookies } from "nookies";
@@ -58,7 +58,7 @@ export default function Dashboard() {
         address,
         telephone,
       })
-      .then(() => {        
+      .then(() => {
         setAssessment("1");
         setMessage("");
         setName("");
@@ -124,8 +124,22 @@ export default function Dashboard() {
   ];
 
   return (
-    <Box width={"100%"} height={"100vh"} backgroundImage={"/assets/images/bgLaraliz.svg"} backgroundRepeat={"no-repeat"} backgroundSize={"cover"}>
-      <Logo />
+    <Box
+      width={"100%"}
+      height={"100vh"}
+      backgroundImage={"/assets/images/bgLaraliz.svg"}
+      backgroundRepeat={"no-repeat"}
+      backgroundSize={"cover"}
+    >
+      <Box
+        w={"100%"}
+        h={["8.7rem", "10.7rem", "13.7rem", "15.7rem", "17.7rem"]}
+        display={"flex"}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
+        <Logo />
+      </Box>
       <form onSubmit={configureRegister}>
         <Box display={"flex"} justifyContent={"center"}>
           <Box display={"flex"} flexDirection={"row"} gap={"15rem"}>
@@ -147,7 +161,10 @@ export default function Dashboard() {
                 {...getRootProps()}
                 m={["2rem 0", "2rem 0", "1.5rem 0", "3rem 0", "3rem 0"]}
               >
-                <HStack flexWrap={"wrap"} spacing={["2rem", "2rem", "2rem", "2.5rem", "2.5rem"]}>
+                <HStack
+                  flexWrap={"wrap"}
+                  spacing={["2rem", "2rem", "2rem", "2.5rem", "2.5rem"]}
+                >
                   {buttons.map((button) => {
                     return (
                       <RadioCard
