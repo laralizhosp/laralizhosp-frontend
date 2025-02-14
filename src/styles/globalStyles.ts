@@ -64,7 +64,6 @@ export const GlobalStyle = createGlobalStyle`
     .responsive-button {
         margin-top: 1rem;
         font-size: 1.6rem !important;
-        width: 21.6rem !important;
         height: 4.2rem !important;
         padding: 1.2rem 5.2rem !important;
     }
