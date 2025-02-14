@@ -5,6 +5,10 @@ export const HelperLabel = styled.p`
   font-weight: 500;
   margin: 2rem 0;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   @media (max-height: ${({ theme }) => theme.containers.containerS}) {
     font-size: 1.2rem;
     margin: 1.2rem 0 0 0;
