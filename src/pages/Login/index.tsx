@@ -1,11 +1,11 @@
 import { Box, FormControl, useToast } from "@chakra-ui/react";
-import Template from "../../components/Template";
 import InputComponent from "../../components/InputComponent";
 import DefaultButton from "../../components/DefaultButton";
 import { FormEvent, useContext, useState } from "react";
 import TextComponent from "../../components/TextComponent";
 import { AuthContext } from "../../contexts/AuthContext";
 import Head from "next/head";
+import Logo from "../../components/Logo";
 
 export default function Login() {
   const toast = useToast();
@@ -35,11 +35,12 @@ export default function Login() {
   }
 
   return (
-    <Template>
+    <Box width={"100%"} height={"100vh"} display={"flex"} alignItems={"center"} justifyContent={"center"} flexDirection={"column"} backgroundImage={"/assets/images/bgLaraliz.svg"} backgroundRepeat={"no-repeat"} backgroundSize={"cover"}>
       <Head>
         <title>Laraliz | pesquisa de satisfação: Entre</title>
       </Head>
-      <Box w={"100%"} textAlign={"left"}>
+      <Logo />
+      <Box w={"100%"} textAlign={"center"} marginBottom={"2rem"}>
         <TextComponent children={"Login."} h1 />
       </Box>
       <form className="responsive-form" onSubmit={handleSubmit}>
@@ -71,12 +72,14 @@ export default function Login() {
             type={"password"}
           />
           <DefaultButton
+            w={"100%"}
+            marginTop={"3rem"}
             isDisabled={isLoading}
             type="submit"
             title="Entrar"
           />
         </FormControl>
       </form>
-    </Template>
+    </Box>
   );
 }
