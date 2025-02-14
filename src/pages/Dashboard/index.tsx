@@ -35,6 +35,8 @@ export default function Dashboard() {
   const [address, setAddress] = useState("");
   const [telephone, setTelephone] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const configureAssessment = useCallback(() => {
     setSendMessage(true);
     setSatisfaction(false);
@@ -47,6 +49,7 @@ export default function Dashboard() {
 
   const configureRegister = (event: FormEvent) => {
     event.preventDefault();
+    setIsLoading(true);
     api
       .post("/assessment", {
         assessment,
@@ -62,6 +65,7 @@ export default function Dashboard() {
         setAddress("");
         setTelephone("");
         toast.success("Registro feito!");
+        setIsLoading(false);
         setAppreciation(true);
         setRegister(false);
       })
@@ -143,7 +147,7 @@ export default function Dashboard() {
                 {...getRootProps()}
                 m={["2rem 0", "2rem 0", "1.5rem 0", "3rem 0", "3rem 0"]}
               >
-                <HStack spacing={["2rem", "2rem", "2rem", "2.5rem", "2.5rem"]}>
+                <HStack flexWrap={"wrap"} spacing={["2rem", "2rem", "2rem", "2.5rem", "2.5rem"]}>
                   {buttons.map((button) => {
                     return (
                       <RadioCard
@@ -279,6 +283,7 @@ export default function Dashboard() {
         {register && (
           <Box display={"flex"}>
             <DefaultButton
+              isDisabled={isLoading}
               type="submit"
               margin={"0 auto"}
               onclick={() => configureRegister}
